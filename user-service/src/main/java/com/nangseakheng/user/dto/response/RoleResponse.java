@@ -1,4 +1,4 @@
-package com.nangseakheng.user.dto.request;
+package com.nangseakheng.user.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

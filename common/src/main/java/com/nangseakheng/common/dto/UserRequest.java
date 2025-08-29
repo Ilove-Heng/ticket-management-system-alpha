@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-public record UserDto (
+public record UserRequest(
         @JsonProperty("id") Long id,
         @JsonProperty("username") String username,
         @JsonProperty("first_name") String firstName,
@@ -21,6 +21,7 @@ public record UserDto (
         @JsonProperty("max_attempt") Integer maxAttempt,
         @JsonProperty("enable_allocate") boolean enableAllocate,
         @JsonProperty("status") String status,
-        @JsonProperty("roles") Set<String> roles
+        @JsonProperty("roles") Set<String> roles,
+        @JsonProperty("groups") Set<String> groups
 ) {
 }

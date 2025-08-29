@@ -1,4 +1,6 @@
 package com.nangseakheng.user.dto.request;
 
-public class AuthenticationRequest {
-}
+
+public record AuthenticationRequest(
+        String username,
+        String password){}

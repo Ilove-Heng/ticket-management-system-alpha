@@ -1,12 +1,18 @@
-package com.nangseakheng.user.model;
+package com.nangseakheng.user.entity;
 
 import com.nangseakheng.common.entity.BaseEntity;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tbl_groups")
 public class Group extends BaseEntity {
 
@@ -42,59 +48,13 @@ public class Group extends BaseEntity {
     @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
     private Set<User> users = new HashSet<>();
 
-    public Long getId() {
-        return id;
+    public void addUser(User user) {
+        this.users.add(user);
+        user.getGroups().add(this);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public Set<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(Set<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void removeUser(User user) {
+        this.users.remove(user);
+        user.getGroups().remove(this);
     }
 }

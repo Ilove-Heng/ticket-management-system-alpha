@@ -1,13 +1,13 @@
 package com.nangseakheng.user.dto.request;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 import java.util.List;
 
-public class GroupMemberRequestDTO {
-    @NotNull(message = "users ids are required")
+@Data
+public class GroupMemberRequest {
+
+    @NotNull(message = "User IDs are required")
     private List<Long> userIds;
-    public List<Long> getUserIds() {
-        return userIds;
-    }
 }

@@ -2,12 +2,10 @@ package com.nangseakheng.user.dto.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nangseakheng.user.entity.Group;
 import com.nangseakheng.user.entity.Role;
-import lombok.Data;
 
-import java.util.HashSet;
 import java.util.Set;
 
-public record CreatePermissionRequestDTO(
+public record CreatePermissionRequest(
         String name,
         String description,
         String status,

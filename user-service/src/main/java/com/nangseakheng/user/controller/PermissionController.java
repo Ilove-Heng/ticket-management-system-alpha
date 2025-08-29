@@ -1,38 +1,44 @@
 package com.nangseakheng.user.controller;
 
-import com.nangseakheng.common.dto.ApiResponse;
-import com.nangseakheng.user.dto.request.CreateGroupRequestDTO;
-import com.nangseakheng.user.dto.request.GroupMemberRequestDTO;
-import com.nangseakheng.user.dto.response.GroupResponseDTO;
-import com.nangseakheng.user.service.GroupService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import com.nangseakheng.common.exception.ResponseErrorTemplate;
+import com.nangseakheng.user.dto.request.CreatePermissionRequest;
+import com.nangseakheng.user.service.PermissionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/groups")
-@RequiredArgsConstructor
-public class GroupController {
-    private final GroupService groupService;
+@RequestMapping("/api/permissions")
+public class PermissionController {
+
+    private final PermissionService permissionService;
+
+    public PermissionController(PermissionService permissionService) {
+        this.permissionService = permissionService;
+    }
+
 
     @PostMapping
-    private ResponseEntity<ApiResponse<GroupResponseDTO>> createGroup(@Valid @RequestBody CreateGroupRequestDTO request) {
-        return ResponseEntity.ok(ApiResponse.<GroupResponseDTO>success("Create group successfully", groupService.create(request)));
+    public ResponseEntity<ResponseErrorTemplate> createPermission(@RequestBody CreatePermissionRequest permission) {
+        return ResponseEntity.ok(permissionService.create(permission));
     }
 
-    @PutMapping("/{groupId}")
-    private ResponseEntity<ApiResponse<GroupResponseDTO>> updateGroup(@PathVariable Long groupId, @Valid @RequestBody CreateGroupRequestDTO request) {
-        return ResponseEntity.ok(ApiResponse.<GroupResponseDTO>success("Update group successfully", groupService.update(groupId, request)));
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseErrorTemplate> updatePermission(@PathVariable Long id,
+                                                                  @RequestBody CreatePermissionRequest permissionDetails) {
+        return ResponseEntity.ok(permissionService.update(id, permissionDetails));
     }
 
-    @PostMapping("/{groupId}/members")
-    private ResponseEntity<ApiResponse<GroupResponseDTO>> addMemberToGroup(@PathVariable Long groupId, @Valid @RequestBody GroupMemberRequestDTO request) {
-        return ResponseEntity.ok(ApiResponse.<GroupResponseDTO>success("Add member to group successfully", groupService.addMemberToGroup(groupId, request)));
+
+    @PostMapping("/{permissionId}/roles/{roleId}")
+    public ResponseEntity<ResponseErrorTemplate> assignRoleToPermission(@PathVariable Long permissionId,
+                                                                        @PathVariable Long roleId) {
+        return ResponseEntity.ok(permissionService.assignRoleToPermission(permissionId, roleId));
     }
 
-    @DeleteMapping("/{groupId}/members")
-    private ResponseEntity<ApiResponse<GroupResponseDTO>> removeMemberFromGroup(@PathVariable Long groupId, @Valid @RequestBody GroupMemberRequestDTO request) {
-        return ResponseEntity.ok(ApiResponse.<GroupResponseDTO>success("Remove member from group successfully", groupService.removeMemberFromGroup(groupId, request)));
+    @DeleteMapping("/{permissionId}/roles/{roleId}")
+    public ResponseEntity<ResponseErrorTemplate> removeRoleFromPermission(@PathVariable Long permissionId,
+                                                                          @PathVariable Long roleId) {
+        return ResponseEntity.ok(permissionService.removeRoleFromPermission(permissionId, roleId));
     }
+
 }

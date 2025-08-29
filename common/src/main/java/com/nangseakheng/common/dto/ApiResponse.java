@@ -35,7 +35,7 @@ public class ApiResponse<T> {
     }
 
     // Factory method for successful response with custom message
-    public static <T> ApiResponse<T> success(T data, String message) {
+    public static <T> ApiResponse<T> success(String message, T data) {
         return new ApiResponse<T>(true, message, data, LocalDateTime.now());
     }
 

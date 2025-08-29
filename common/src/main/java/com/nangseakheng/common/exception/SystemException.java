@@ -7,7 +7,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Getter
-public class BusinessException extends RuntimeException implements Serializable {
+public class SystemException extends RuntimeException implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -17,15 +17,15 @@ public class BusinessException extends RuntimeException implements Serializable 
     private final HttpStatus httpStatus;
     private final transient Object[] args;
 
-    public BusinessException(String message) {
+    public SystemException(String message) {
         super(message);
-        this.errorCode = "BUSINESS_ERROR";
+        this.errorCode = "SYSTEM_ERROR";
         this.errorMessage = message;
         this.httpStatus = HttpStatus.BAD_REQUEST;
         this.args = null;
     }
 
-    public BusinessException(String errorCode, String message) {
+    public SystemException(String errorCode, String message) {
         super(message);
         this.errorCode = errorCode;
         this.errorMessage = message;
@@ -33,7 +33,7 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.args = null;
     }
 
-    public BusinessException(String errorCode, String message, HttpStatus httpStatus) {
+    public SystemException(String errorCode, String message, HttpStatus httpStatus) {
         super(message);
         this.errorCode = errorCode;
         this.errorMessage = message;
@@ -41,7 +41,7 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.args = null;
     }
 
-    public BusinessException(String errorCode, String message, HttpStatus httpStatus, Object... args) {
+    public SystemException(String errorCode, String message, HttpStatus httpStatus, Object... args) {
         super(message);
         this.errorCode = errorCode;
         this.errorMessage = message;
@@ -49,7 +49,7 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.args = args;
     }
 
-    public BusinessException(String message, Throwable cause) {
+    public SystemException(String message, Throwable cause) {
         super(message, cause);
         this.errorCode = "BUSINESS_ERROR";
         this.errorMessage = message;
@@ -57,7 +57,7 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.args = null;
     }
 
-    public BusinessException(String errorCode, String message, Throwable cause) {
+    public SystemException(String errorCode, String message, Throwable cause) {
         super(message, cause);
         this.errorCode = errorCode;
         this.errorMessage = message;
@@ -65,7 +65,7 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.args = null;
     }
 
-    public BusinessException(String errorCode, String message, HttpStatus httpStatus, Throwable cause) {
+    public SystemException(String errorCode, String message, HttpStatus httpStatus, Throwable cause) {
         super(message, cause);
         this.errorCode = errorCode;
         this.errorMessage = message;
@@ -73,7 +73,7 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.args = null;
     }
 
-    public BusinessException(String errorCode, String message, HttpStatus httpStatus, Throwable cause, Object... args) {
+    public SystemException(String errorCode, String message, HttpStatus httpStatus, Throwable cause, Object... args) {
         super(message, cause);
         this.errorCode = errorCode;
         this.errorMessage = message;

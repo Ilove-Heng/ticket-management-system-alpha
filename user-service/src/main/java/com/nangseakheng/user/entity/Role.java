@@ -1,12 +1,17 @@
-package com.nangseakheng.user.model;
+package com.nangseakheng.user.entity;
 
 import com.nangseakheng.common.entity.BaseEntity;
 import jakarta.persistence.*;
-
+import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tbl_roles")
 public class Role extends BaseEntity {
 
@@ -24,73 +29,19 @@ public class Role extends BaseEntity {
     private String status;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @Builder.Default
     private Set<User> users = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "tbl_role_permissions",
+            name = "tt_role_permissions",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id",referencedColumnName = "id")
+            inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id")
     )
+    @Builder.Default
     private Set<Permission> permissions = new HashSet<>();
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @Builder.Default
     private Set<Group> groups = new HashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Set<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(Set<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public Set<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(Set<Group> groups) {
-        this.groups = groups;
-    }
 }
-

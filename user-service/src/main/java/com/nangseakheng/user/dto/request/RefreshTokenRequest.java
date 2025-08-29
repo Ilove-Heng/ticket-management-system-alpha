@@ -1,4 +1,8 @@
 package com.nangseakheng.user.dto.request;
 
-public class RefreshTokenRequest {
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record RefreshTokenRequest(
+        @JsonProperty("refresh_token") String refreshToken) {
 }
