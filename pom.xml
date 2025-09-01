@@ -16,6 +16,8 @@
     <modules>
         <module>user-service</module>
         <module>common</module>
+        <module>api-gateway</module>
+        <module>event-service</module>
     </modules>
     <packaging>pom</packaging>
 	<url/>

@@ -29,7 +29,9 @@ public class AuthServiceImpl implements AuthService {
         final String password = authenticationRequest.password();
 
         CustomUserDetail customUserDetail = customUserDetailService.customUserDetail(username);
+        log.info("customUserDetail",customUserDetail);
 
+        // check if password is empty
         if(!StringUtils.hasText(password)){
             log.error("Password is empty for user: {}", username);
             return new ResponseErrorTemplate(
@@ -45,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
             log.error("Invalid password for user: {}", username);
             customUserDetailService.saveUserAttemptAuthentication(username);
             return new ResponseErrorTemplate(
-                    "Invalid password",
+                    "Invalid username or password",
                     ApiConstant.FORBIDDEN.getKey(),
                     new EmptyObject(),
                     true

@@ -36,6 +36,6 @@ jwt:
   url: '/authorization'
   header: 'Authorization'
   prefix: 'Bearer '
-  expiration: 120
+  expiration: 3600
   secret: '+2ZRPSIf72kFPBiYmg+VK+kt4VB7iGnSab0i/yOFA7S6cvrh99QOQmSpcS6H0kDqOdB0gM0UP6nUJxXh+A=='
   default-password: 'mypwd@123'
