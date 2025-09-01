@@ -34,6 +34,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     public CustomUserDetail customUserDetail(String username) {
         Optional<User> user = userRepository.findFirstByUsernameAndStatus(username, ApiConstant.ACTIVE.getKey());
+        log.info("user", user);
         if(user.isEmpty()){
             log.warn("Username {} unauthorized", username);
             throw new CustomMessageException(
