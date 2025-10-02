@@ -75,7 +75,8 @@ public class JwtServiceImpl implements JwtService {
     public String refreshToken(CustomUserDetail customUserDetail) {
 
         Instant currentTime = Instant.now();
-        var tokenExpiration = Date.from(currentTime.plusMillis(600000));
+        var tokenExpiration = Date.from(currentTime.plusMillis(600000)); // adjust expiration as needed
+        // Generate new refresh token
         var refreshToken = Jwts.builder()
                 .setSubject(customUserDetail.getUsername())
                 .setIssuedAt(Date.from(currentTime))
