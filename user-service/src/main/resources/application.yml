@@ -19,7 +19,8 @@ spring:
   jpa:
     hibernate:
 #      Use this for in-memory DBs (for testing)
-#      ddl-auto: create-drop
+#      ddl-auto: create-drop & update
+#        ddl-auto: create-drop
         ddl-auto: update
 
     show-sql: true

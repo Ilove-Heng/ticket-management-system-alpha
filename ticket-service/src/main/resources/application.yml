@@ -1,15 +1,16 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
-    name: event-service
+    name: ticket-service
 
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/ticketdb}
     username: ${SPRING_DATASOURCE_USERNAME:ticketuser}
     password: ${SPRING_DATASOURCE_PASSWORD:ticketpass}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     open-in-view: false  # Disable OpenEntityManagerInViewFilter
     hibernate:
@@ -21,3 +22,12 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     defer-datasource-initialization: true
+
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6380}
+# Service
+event:
+  service:
+    url: ${EVENT_SERVICE_URL:http://localhost:8082/api/v1/events}

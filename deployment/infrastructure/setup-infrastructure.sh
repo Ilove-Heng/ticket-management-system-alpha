@@ -87,7 +87,7 @@ show_service_urls() {
     echo -e "${CYAN}Redis:${NC}          localhost:6379"
     echo -e "${CYAN}Zookeeper:${NC}      localhost:2181"
     echo -e "${CYAN}Kafka:${NC}          localhost:9092"
-    echo -e "${CYAN}Kafka UI:${NC}       http://localhost:8080"
+    echo -e "${CYAN}Kafka UI:${NC}       http://localhost:8070"
     echo -e "${CYAN}Zipkin:${NC}         http://localhost:9411"
     echo ""
 }
